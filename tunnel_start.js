@@ -100,7 +100,6 @@ var pacInit = function(cbtUrls,cmdArgs,cb){
 }
 
 var startConManTunnelViaApi = function(api, params, cb){
-    console.dir(params)
     // sends err to callback if LCM is not running
     api.getConManager( (err, getConManResult) => {
         // console.log("getconmanresult: " + util.inspect(getConManResult));
@@ -305,7 +304,6 @@ module.exports = {
                     if( accountInfo.subscription.localConManEnabled && !cmdArgs.secret ) {
                         // create conman post arguments
                         var conmanParams = createConmanParams(cmdArgs)
-                        console.dir(conmanParams)
 
                         startConManTunnelViaApi(api, conmanParams, ( err, tunnelObject ) => {
                             if (err){
@@ -418,7 +416,7 @@ function createConmanParams(params){
         "proxyIp": "local_ip",
         "proxyPort": "local_port" ,
         "tType": "tunnel_type",
-        "tunnelName": "tunnel_name",
+        "tunnelname": "tunnel_name",
         "pac": "pac",
         "rejectUnauthorized": "rejectUnauthorized",
         "acceptAllCerts": "accept_all_certs",
@@ -426,8 +424,6 @@ function createConmanParams(params){
     };
     // apply other_options to our options object
     return _.reduce(params, (opts, value, optionName) => {
-        console.log(`looking at ${optionName}:${value}`)
-        console.log(`opts is currently ${util.inspect(opts)}`)
         if(forwardedParams[optionName]){
             opts[optionName] = value === 'true'  ? true :
                                value === 'false' ? false 
