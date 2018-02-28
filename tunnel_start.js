@@ -420,7 +420,8 @@ function createConmanParams(params){
         "pac": "pac",
         "rejectUnauthorized": "rejectUnauthorized",
         "acceptAllCerts": "accept_all_certs",
-        "bypass": "direct_resolution"
+        "bypass": "direct_resolution",
+        "dir": "dir"
     };
     // apply other_options to our options object
     return _.reduce(params, (opts, value, optionName) => {
